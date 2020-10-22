@@ -1,0 +1,26 @@
+class Solution{
+public:
+    int equalPartition(int N, int arr[])
+    {
+        int total=0;
+     for(int i=0;i<N;i++) total=total+arr[i];
+     if(total%2!=0) return false;
+     int M=total/2;
+     bool t[N+1][M+1];
+     t[0][0]=true;
+     for(int i=1;i<M;i++) t[0][i]=false;
+     for(int i=1;i<N;i++) t[i][0]=true;
+     for(int i=1;i<N+1;i++){
+         for(int j=1;j<M+1;j++){
+            if(j>=arr[i-1]){
+             t[i][j]= (t[i-1][j] || t[i-1][j-arr[i-1]]);
+            }
+            else{
+                t[i][j]=t[i-1][j];
+            }
+             
+         }
+     }
+     return t[N][M];
+    }
+};

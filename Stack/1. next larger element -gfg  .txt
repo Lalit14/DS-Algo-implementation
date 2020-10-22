@@ -1,0 +1,46 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+#include <iostream>  
+int main() {
+    int test;
+    cin >>test;
+    while(test--){
+      long  int ele;
+        cin>>ele;
+long long int arr[ele];
+    for(int i=0;i<ele;i++){
+        cin>>arr[i];
+        
+    }   
+    vector<long long int>vec;
+    stack<long long int>s;
+    for(int i=ele-1;i>=0;i--){
+        if(s.size()==0){
+            vec.push_back(-1);
+        }
+        else if(s.size()>0 && s.top()>arr[i]){
+       vec.push_back(s.top());
+        }
+        else{
+            while(s.size()>0 && s.top()<=arr[i]){
+                s.pop();
+                
+            }
+            if(s.size()==0){
+                vec.push_back(-1);
+            }
+            else{
+            vec.push_back(s.top());
+            }
+        }
+        s.push(arr[i]);
+    }
+    reverse(vec.begin(),vec.end());    
+    for(int i=0;i<ele;i++){
+        cout<<vec[i]<< " ";
+    }   
+    cout<<endl;    
+    }
+	return 0;
+}
+T.C.- O(n)

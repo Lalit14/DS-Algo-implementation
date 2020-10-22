@@ -1,0 +1,105 @@
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+      int rows=matrix.size();
+            if(rows==0) return 0;
+      int cols=matrix[0].size();
+        int largest=0;
+    
+        vector<vector<int>>dp(rows+1,vector<int >(cols+1,0));
+        for(int i=1;i<rows+1;i++){
+            for(int j=1;j<cols+1;j++){
+                if(matrix[i-1][j-1]=='1'){
+                dp[i][j]=1+min(dp[i-1][j],min(dp[i][j-1],dp[i-1][j-1]));
+                if(largest<dp[i][j]) largest=dp[i][j];
+                }    }
+        }
+      
+        return largest*largest;
+        
+    }
+};
+T.C. -O(m*n)
+S.c. -O(m*n)
+*******************************************//*******************************//************************//*************
+
+*Space optimised solution*:
+
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+      int rows=matrix.size();
+            if(rows==0) return 0;
+      int cols=matrix[0].size();
+        int largest=0;
+    int prev=0;
+        vector<int>dp(cols+1,0);
+        for(int i=1;i<rows+1;i++){
+            for(int j=1;j<cols+1;j++){
+                int temp=dp[j];
+                if(matrix[i-1][j-1]=='1'){
+                dp[j]=1+min(prev,min(dp[j],dp[j-1]));
+                if(largest<dp[j]) largest=dp[j];
+                }  
+                else{
+                    dp[j]=0;
+                }
+            prev=temp;
+            }
+        }
+      
+        return largest*largest;
+        
+    }
+};
+
+
+
+T.C. -O(m*n)
+S.C.- O(m)
+
+
+**********************Recursive approach***************************************************************** :
+
+class Solution {
+public:
+    vector<vector<char>> ad;
+    int dp[1003][1003];
+    int rec(int x, int y) {
+        // printf("%d %d\n", x, y);
+        if(x<0 || y<0)
+            return 0;
+        if(dp[x][y]!=-1)
+            return dp[x][y];
+        int ans = 0;
+        if(ad[x][y] == '0') {
+            rec(x-1, y-1);
+            rec(x-1, y);
+            rec(x, y-1);
+        } else {
+            ans = min(rec(x-1, y-1), min(rec(x-1, y), rec(x, y-1)));
+            
+            ans = 1+ans;
+            
+        }
+        dp[x][y] = ans;
+        return ans;
+    }
+    int maximalSquare(vector<vector<char>>& matrix) {
+        memset(dp, -1, sizeof(dp));
+        ad = matrix;
+        if(matrix.size() == 0)
+            return 0;
+        rec(matrix.size()-1, matrix[0].size()-1);
+        int ans = 0;
+        for(int i=0;i<matrix.size();++i) {
+            for(int j=0;j<matrix[0].size();++j) {
+                // printf("%d ", dp[i][j]);
+                ans = max(ans, dp[i][j]);
+            }
+            // printf("\n");
+        }
+        return ans*ans;
+    }
+};
+*****************************//*******************************//*********************************//*****************

@@ -1,0 +1,91 @@
+ #include <bits/stdc++.h> 
+
+using namespace std; 
+
+ int main() {
+
+	int test;
+
+	cin>>test;
+
+	while(test--){
+
+	    int f,s;
+
+	    string s1,s2;
+
+	    cin>>f>>s>>s1>>s2;
+
+	   //cin>>s1;/
+
+	   int ans=-1;
+
+int t[f+1][s+1];
+
+t[0][0]=0;
+
+string res="";
+
+for(int i=1;i<f+1;i++) t[i][0]=0;
+
+for(int i=1;i<s+1;i++) t[0][i]=0;
+
+
+
+	for(int i=1;i<f+1;i++) {
+
+	    for(int j=1;j<s+1;j++){
+
+	       //   if(f==0 ||s==0) t[i][j]=0;
+
+    //   if(t[f][s]!=-1) t[i][j]=t[f][s];
+
+      if(s1[i-1]==s2[j-1]){
+
+        //   res=res+s2[j-1];
+
+      t[i][j]=1+t[i-1][j-1];
+
+      }
+
+      else t[i][j]=0;
+
+   if(ans<t[i][j]) ans=t[i][j];
+
+	    }
+
+	  
+
+	}
+
+//traverse reverse for obtaining string 
+
+	int i=f;
+
+	int j=s;
+
+while(i>0 &&j>0)
+
+	        if(s1[i-1]==s2[j]) {res=res+s1[i];
+
+i--;
+
+j--;
+
+	}
+
+	else{
+
+	    if(t[i][j-1]>t[i-1][j])  j--;
+
+            else    i--;
+
+	 
+
+                }
+
+cout<<res; //answer will be reverse of ;res'
+
+}	return 0;
+
+}

@@ -1,0 +1,33 @@
+class Solution{
+public:
+	int maxSumIS(int nums[], int N)  
+	{ 
+   int dp[N];
+        //   dp[0]=1;
+        int maxx=0;
+        int sum=0;
+        for(int i=0;i<N;i++){
+            int  max=0;
+            for(int j=0;j<i;j++){
+                if(nums[i]>nums[j]){
+                    if(max==0) {
+                        max=dp[j];
+                        }
+                     else if(dp[j]>max) max=dp[j];
+                       }
+            
+                                    }
+    if(max==0) {
+        dp[i]=nums[i];
+    }else{
+        dp[i]=nums[i]+max;
+    }
+    
+if(dp[i]>maxx){ 
+ maxx=dp[i];}
+        //   cout<<nums[i]<<" ";
+        }    
+     
+	 return maxx;
+	}  
+};
