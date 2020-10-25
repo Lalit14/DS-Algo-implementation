@@ -1,1 +1,11 @@
 https://leetcode.com/discuss/interview-question/488887/Amazon-Final-Interview-Questions-or-SDE1
+
+
+1) another form of writing MIN functions for 3 variable:
+
+int min(int x, int y, int z) 
+{ 
+    return min(min(x, y), z); 
+}
+2)
+ 
