@@ -7,5 +7,28 @@ int min(int x, int y, int z)
 { 
     return min(min(x, y), z); 
 }
-2)
+2) How do I send my resume to HR?
+
+
+•Mail Subject line:
+Prabhudeep Singh | BackEnd Java Developer | 2 YoE | 60 days notice
+
+
+•Mail Body:
+
+Hi <Recruiter's Name>
+
+I got your email ID from <source> and I find my skills and experience aligned to JobID: <JobID>. Here are my details:
+
+•Position:
+•Current CTC:
+•Expected CTC: As per company norms.
+•Notice period:
+•Preferred location:
+•Resume: PFA!
+
+Regards,
+lalit
+
+
  

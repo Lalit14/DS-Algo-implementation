@@ -1,0 +1,58 @@
+#include <vector>
+using namespace std;
+
+int main() {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    vector<int> a={5,3,10};
+	    vector<int> dp(n+1);
+	    dp[0]=1;
+	    for(int i=0;i<3;i++)
+	    {
+	        for(int j=a[i];j<=n;j++)
+	        {
+	            dp[j]+=dp[j-a[i]];
+	        }
+	    }
+	    cout<<dp[n]<<endl;
+	}
+	return 0;
+}
+T.C. =O(M*N)
+S.C.=O(N)
+*********************************+++*******************************************
+int main() 
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,i;
+	    cin>>n;
+	    int dp[n+1];
+	    memset(dp,0,sizeof(dp));
+	    dp[0]=1;
+	    for(i=3;i<=n;i++)
+	    {
+	        dp[i]+=dp[i-3];
+	    }
+	    for(i=5;i<=n;i++)
+	    {
+	        dp[i]+=dp[i-5];
+	    }
+	    for(i=10;i<=n;i++)
+	    {
+	        dp[i]+=dp[i-10];
+	    }
+	    cout<<dp[n]<<"\n";
+	}
+	return 0;
+}
+
+T.C=O(N)
+S.C.=O(N)
