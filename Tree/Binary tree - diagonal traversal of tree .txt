@@ -1,0 +1,21 @@
+void preorder(Node* root,map<int,vector<int>>&ans,int d){
+    if(!root) return ;
+    ans[d].push_back(root->data);
+    preorder(root->left,ans,d+1);
+    preorder(root->right,ans,d);
+    
+}
+
+vector<int> diagonal(Node *root)
+{
+    vector<int >vec;
+    int d=0;
+    map<int,vector<int>>mp;
+    preorder(root,mp,d);
+    for(auto x:mp){
+    for(int y:x.second){
+        vec.push_back(y);
+    }
+    }
+     return vec;
+   }

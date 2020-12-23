@@ -1,0 +1,17 @@
+int height1(Node* root){
+    if(!root) return 0;
+            int depthl=height(root->left);
+            int depthr=height(root->right);
+            if(depthl>depthr) return (depthl+1);
+            else return (depthr+1);
+            
+}
+
+
+int height(Node* root)
+{
+    // int count =0;
+    return height1(root);
+    
+   // Your code here
+}

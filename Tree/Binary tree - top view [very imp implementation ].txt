@@ -1,0 +1,33 @@
+*****************GFG*********************
+void topView( Node *root)
+{ if(root==NULL) return ;
+    
+    queue<pair< Node*,int >> q;
+    
+    map<int ,int >m;        
+    
+    q.push(make_pair(root,0));              //intially push root element 
+    
+    while(!q.empty()){
+        
+        pair<Node*,int>p=q.front();     // pop element  from queue
+        q.pop();
+        int hd=p.second;
+        Node* temp=p.first;
+       
+        if(m.find(hd)==m.end())         //check it is present in map if not then assign value to it 
+        m[hd]=temp->data;
+        
+   if(temp->left){
+       q.push(make_pair(temp->left,hd-1));
+   }
+   if(temp->right){
+       q.push(make_pair(temp->right,hd+1));
+   }
+    }
+     for(auto i=m.begin();i!=m.end();i++)
+    {
+        cout<<i->second<<" ";
+    }
+    
+}

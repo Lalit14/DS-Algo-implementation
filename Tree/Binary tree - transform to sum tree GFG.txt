@@ -1,0 +1,16 @@
+int postorder(Node* root){
+  if(!root) return NULL;
+  
+  int prev=root->data;
+  root->data=postorder(root->left)+postorder(root->right);
+  
+return root->data+prev;
+}
+void toSumTree(Node *node)
+{
+    if(!node) return ;
+    if(!node->left && !node->right) return ;
+    
+    postorder(node);
+   return;
+}

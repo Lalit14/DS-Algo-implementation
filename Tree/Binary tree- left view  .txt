@@ -1,0 +1,55 @@
+***************itrative way *************************
+vector<int> leftView(Node *root)
+{    queue<Node*>Q;
+        vector<int > res;
+        if(!root) return res; 
+        Q.push(root);
+     int maxlevel=0;		****imp***
+     int level=1;
+        while(!Q.empty()){
+            int size=Q.size();
+            vector<int>nodes(size);
+    level++;
+            for(int i=0;i<size;i++){
+            Node* node=Q.front();
+            Q.pop();
+            nodes[i]=node->data;
+    
+        if(level>maxlevel){		***imp***
+        res.push_back(nodes[0]);	***imp***
+        maxlevel=level;
+        }
+        
+        if(node->left) Q.push(node->left);
+        if(node->right) Q.push(node->right);
+            }
+                }
+        
+    return res;
+}
+
+*****************************recursive way********************
+vector<int >vec;
+void leftViewUtil(node* root, int level, int* max_level) 
+{ 
+  if (root == NULL) 	****base condition**** 
+    return; 
+
+  // If we are moving to a new level, print the first node(left-most)
+  if (*max_level < level) { 
+vec.push_back(root->data);
+    *max_level = level; 
+  } 
+
+  leftViewUtil(root->left, level + 1, max_level); 
+  leftViewUtil(root->right, level + 1, max_level); 
+} 
+  
+vector<int > leftView(node* root) 
+{ 
+  int max_level = 0; 
+  leftViewUtil(root, 1, &max_level); 
+
+return vec;
+} 
+  

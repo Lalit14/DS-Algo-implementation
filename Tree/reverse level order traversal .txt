@@ -1,0 +1,58 @@
+**************gfg****************gfg**************
+vector<int> reverseLevelOrder(Node *root)
+{vector<int >vec;
+queue<Node*>q;
+   stack<Node*>s;
+   Node* temp=root;
+   q.push(temp);
+ 
+   while(!q.empty()){
+       Node* temp=q.front();
+     
+       q.pop();
+       s.push(temp);
+       if(temp->right){
+           q.push(temp->right);
+       }
+        if(temp->left){
+            q.push(temp->left);
+            
+        }
+   }
+      while(s.empty()==false){
+          Node* tmp=s.top();
+          vec.push_back(tmp->data);
+          s.pop();
+       }
+return vec;
+}
+
+******************************************************************************
+
+
+vector<vector<int>> levelOrderBottom(TreeNode* root) {
+        vector<vector<int>>result;
+        if(!root) return result;
+        queue<TreeNode*>Q;
+        Q.push(root);
+        while(!Q.empty()){
+            int size=Q.size();
+            vector<int>nodes(size);
+            for(int i=0;i<size;i++){
+            // int n=Q.front();
+            TreeNode* node=Q.front();
+                Q.pop();
+                nodes[i]=node->val;
+                if(node->left) Q.push(node->left);
+                if(node->right) Q.push(node->right);
+                
+            
+            
+            }
+            result.push_back(nodes);
+        }
+        reverse(result.begin(),result.end());
+        return result;
+    }
+
+

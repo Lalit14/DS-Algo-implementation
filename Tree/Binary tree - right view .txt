@@ -1,0 +1,30 @@
+vector<int> rightView(Node *root)
+{
+    queue<Node*>Q;
+        vector<int > res;
+        if(!root) return res; 
+        Q.push(root);
+     int maxlevel=0;	
+     int level=1;
+        while(!Q.empty()){
+            int size=Q.size();
+            vector<int>nodes(size);
+    level++;
+            for(int i=0;i<size;i++){
+            Node* node=Q.front();
+            Q.pop();
+            nodes[i]=node->data;
+    
+        if(level>maxlevel){		
+        res.push_back(nodes[0]);	
+        maxlevel=level;
+        }
+        if(node->right) Q.push(node->right); //***cahnge is that we  push right first then left 
+        if(node->left) Q.push(node->left);
+            }
+                }
+        
+    return res;
+
+}
+

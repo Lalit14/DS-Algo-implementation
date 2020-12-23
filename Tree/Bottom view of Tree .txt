@@ -1,0 +1,38 @@
+***********GFG**************
+vector <int> bottomView(Node *root)
+{
+  vector<int >vec;
+ if(root==NULL) return vec;
+    
+    queue<pair< Node*,int >> q;
+    
+    map<int ,int >m;        
+  
+    q.push(make_pair(root,0));              //intially push root element 
+    while(!q.empty()){
+        pair<Node*,int>p=q.front();     // pop element  from queue
+        q.pop();
+        int hd=p.second;
+        Node* temp=p.first;
+       
+    **********    // if(m.find(hd)==m.end())       //removing this line of code if not present then push if present then replace it 
+                                        //new element will replace that come at hd for last time
+                                        //check it is present in map if not then assign value to it *******************
+        m[hd]=temp->data;
+        
+   if(temp->left){
+       q.push(make_pair(temp->left,hd-1));
+   }
+   if(temp->right){
+       q.push(make_pair(temp->right,hd+1));
+   }
+    
+        
+    }
+     for(auto i=m.begin();i!=m.end();i++)
+    {
+       vec.push_back(i->second);
+    }
+return vec;
+ 
+}

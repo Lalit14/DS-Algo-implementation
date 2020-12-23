@@ -1,0 +1,17 @@
+*************GFG***************
+int  func1(Node* temp,bool &flag){
+    if(!temp) return 0;
+    if(flag==false ) return 0;
+    int l= func1(temp->left,flag);
+    int r=func1(temp->right,flag);
+    if(abs(r-l)>1) flag=false;
+    return (1+max(r,l));
+}
+
+bool isBalanced(Node *root)
+{
+    bool flag=true;
+    if(!root) return true;
+    func1(root,flag);
+    return flag;
+}
