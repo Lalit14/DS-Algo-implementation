@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+#include <bits/stdc++.h> 
+void solve(string ip, string op, vector<string> &v)
+{
+if (ip.size() == 0)
+{
+string str = "";
+str += "(" + op + ")";
+v.push_back(str);
+return;
+}
+
+string op1 = op;
+string op2 = op + " ";
+op1.push_back(ip[0]);
+op2.push_back(ip[0]);
+ip.erase(ip.begin());
+solve(ip, op1, v);
+solve(ip, op2, v);
+
+}
+
+int main()
+{
+int t;
+cin >> t;
+while (t--)
+{
+vector<string> v;
+string ip;
+cin >> ip;
+string op;
+op.push_back(ip[0]);
+ip.erase(ip.begin());
+solve(ip, op, v);
+reverse(v.begin(), v.end());
+for (auto i : v)
+{
+cout << i;
+}
+cout << endl;
+}
+
+return 0;
+}

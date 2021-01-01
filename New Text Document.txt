@@ -1,3 +1,6 @@
+  vector<int> cand(256, 0);
+   vector<bool> visited(256, false);
+
 https://leetcode.com/discuss/interview-question/488887/Amazon-Final-Interview-Questions-or-SDE1
 
 

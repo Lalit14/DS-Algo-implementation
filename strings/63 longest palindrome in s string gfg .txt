@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+void printfunc(string s ,int start,int end){
+  }
+}
+int main() {
+int test;
+
+while(test--){
+
+string s;
+cin>>s;
+int len=s.length();
+int end=1;
+int start=0;
+int l,h;
+for(int i=1;i<len;i++){
+    l=i-1;
+    h=i;
+    while(s[l]==s[h] && h<len && l>=0){
+        if(h-l+1>end){
+            start =l;
+            end=h-l+1;
+               }
+        
+              
+    l--;
+    h++;
+}
+   l=i-1;
+    h=i+1;
+    while(s[l]==s[h] && h<len && l>=0){
+        if(h-l+1>end){
+            start =l;
+            end=h-l+1;
+               }
+        
+          
+    l--;
+    h++;
+}
+}
+  for(int i=start;i<=end;i++)
+  {
+      cout<<s[i];
+  }
+  cout<<endl;
+  
+}
+
+
+
+}

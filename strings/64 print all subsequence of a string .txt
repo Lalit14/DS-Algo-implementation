@@ -1,0 +1,29 @@
+#include <bits/stdc++.h> 
+// using namespace std; 
+#include <iostream>
+using namespace std;
+void func1(vector<string> ip ,vector<string> op){
+    if(ip.size()==0){
+     std::cout << op << std::endl;
+    return;
+    }
+    
+    vector<string> op1=op;
+    vector<string> op2=op;
+    
+    op2.push_back(ip[0]);
+    ip.erase(ip.begin()+0);
+    
+    func1(ip,op1);
+    func1(ip,op2);
+    
+    
+}
+int main() {
+vector<string> ip={"abcd"};
+vector<string>op={""};
+// int m=s.length();
+
+func1(ip,op);
+	return 0;
+}

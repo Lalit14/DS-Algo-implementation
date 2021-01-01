@@ -1,0 +1,35 @@
+string removeDuplicateLetters(string s) {
+    vector<bool> visited(256, false);
+    unordered_map<char, int> mp;
+    string s1="";
+    for (int i = 0; s[i]; i++) 
+    {
+        if (mp.find(s[i]) == mp.end()) 
+        {
+            mp.insert(make_pair(s[i], 1));
+        }
+ 
+     
+    else    {
+            mp[s[i]]++;
+            cout<<s[i]<<" ";
+        }
+    }
+        
+        for(int i=0;i<s.size();i++){
+            mp[s[i]]--;
+            if(visited[s[i]]) continue;
+         while( s1.back()>s[i] && mp[s1.back()]){
+             visited[s1.back()]=false;
+             s1.pop_back();
+             
+         }
+            s1=s1+s[i];
+            visited[s[i]]=true;
+            
+            
+        }
+        return s1;
+        
+        
+    }

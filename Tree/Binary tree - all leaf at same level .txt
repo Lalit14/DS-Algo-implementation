@@ -1,0 +1,18 @@
+bool check_function(Node* root,int &global,int level){
+    if(!root ) return true;
+    if(!root->left && !root->right){
+       if(global==0){
+           global=level;
+           return true;
+       } 
+       return (global==level);
+    }
+return (check_function(root->left,global,level+1) && check_function(root->right,global,level+1));
+}
+bool check(Node *root)
+{
+if(!root) return true;
+int global=0;
+int level=0;
+return check_function(root,global,level);
+}
