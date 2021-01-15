@@ -1,0 +1,32 @@
+  string secFrequent (string arr[], int n)
+    {
+        int omax=0;
+          int smax=0;
+    string str="";
+        unordered_map<string, int> umap; 
+        for(int i=0;i<n;i++){
+            umap[arr[i]]++;
+
+        }
+        for(int i=0;i<n;i++){
+        if(umap[arr[i]]>omax){
+            cout<<smax<<endl;
+            smax=omax;
+            omax=umap[arr[i]];
+            
+        }else if(umap[arr[i]]>smax && umap[arr[i]]!=omax)   smax=umap[arr[i]];
+        
+    
+        }
+    
+        for(int i=0;i<n;i++){
+            cout<<smax;
+            if(umap[arr[i]]==smax)
+              return arr[i];
+            
+        }
+       return str; 
+        
+    
+
+    }

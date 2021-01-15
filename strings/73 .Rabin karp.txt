@@ -1,0 +1,37 @@
+int d=26;
+class Solution {
+    int func1(string haystack,string needle,int d){
+           int m=needle.length();                                                
+                                          // radix - beneficialmake smaller      
+        int q = 15486703;                                               // some big prime
+    int n=haystack.length();
+        long p = 0; long t = 0; long h = 1;
+       
+        for (auto i = 0; i < m; ++i) {   
+      
+            if (i != m - 1) 
+                h = (d * h) % q;
+            p = (d * p + needle[i]) % q;
+            t = (d * t + haystack[i]) % q;
+        }
+        
+        for (auto s = 0; s < n - m + 1; ++s) {
+            if (t < 0) t += q;                                           // fix negative hash
+            if (p == t)                                                  // hash matched
+                if (needle == haystack.substr(s, m))                     // collision handling
+                    return s;
+            if (s < n - m)                                               // updating hash: pop front char, push new
+                t = (d * (t - haystack[s] * h) + haystack[s + m]) % q;
+        }
+        
+        return -1;  
+    }
+public:
+    int strStr(string haystack, string needle) {
+      if(needle.size()==0) return 0;
+      if(needle.size()>haystack.size()) return -1;  
+        int d=5381;
+        return func1(haystack,needle,d);
+        
+    }
+};

@@ -1,0 +1,23 @@
+int dp[1001][1001];
+int  func1(string str,int l,int h){
+    if(l>h) return 0;
+    
+    if(l==h) return 1;
+    if(dp[l][h]!=-1) return dp[l][h];
+    if(str[l]==str[h]) return dp[l][h]=1+func1(str,l+1,h)+func1(str,l,h-1);
+    
+    else return dp[l][h]=func1(str,l+1,h)+func1(str,l,h-1)-func1(str,l+1,h-1);
+    
+    
+    
+}
+int countPS(string str)
+{ int n=str.length();
+  if(str.length()==0) return 0;
+  dp[n][n];
+ memset(dp,-1,sizeof(dp));
+
+ return func1(str,0,str.length()-1);
+//   return dp[n][n];
+}
+ 

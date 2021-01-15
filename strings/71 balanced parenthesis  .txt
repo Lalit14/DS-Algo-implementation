@@ -1,0 +1,22 @@
+
+bool ispar(string x)
+{
+int n=x.length();
+if(n==0) return true;
+if(n%2!=0) return false;
+stack<char> st;
+for(char &s : x){
+   switch(s){
+    case '{': 
+    case '(': 
+    case '[': st.push(s); break;
+    case '}': if(st.empty() || st.top()!='{') return false; else st.pop(); break;
+    case ']': if(st.empty() || st.top()!='[') return false; else st.pop(); break;
+    case ')': if(st.empty() || st.top()!='(') return false; else st.pop(); break;
+    default: ;
+}
+
+    
+}
+return st.empty();
+}

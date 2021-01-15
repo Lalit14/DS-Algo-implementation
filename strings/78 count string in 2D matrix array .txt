@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+int solve(int i,int j,string s, char ch[6][6],int sz,int idx ){
+    int found=0; 
+    if(i>=0 && j>=0 && j<6 && i<6 && ch[i][j]==s[idx]){
+        char  temp=s[idx];
+        ch[i][j]=0;
+        idx++;
+    
+        if(idx==sz){
+            found=1;
+        }
+    else{
+        found+=solve(i-1,j,s,ch,sz,idx);
+        found+=solve(i+1,j-1,s,ch,sz,idx);
+        found+=solve(i,j+1,s,ch,sz,idx);
+        found+=solve(i,j-1,s,ch,sz,idx);
+
+    }
+    ch[i][j]=temp;
+    }
+    return found;
+}
+
+int main() {
+    string s="GEEKS";
+    int ans=0;
+ char ch[6][6] ={
+                {'D','D','D','G','D','D'},
+                {'B','B','D','E','B','S'},
+                {'B','S','K','E','B','K'},
+                {'D','D','D','D','D','E'},
+                {'D','D','D','D','D','E'},
+                {'D','D','D','D','D','G'}
+                   };
+             int sz=s.length();
+for(int i=0;i<6;i++){
+    for(int j=0;j<6;j++){
+        ans+=solve(i,j,s,ch,sz,0);
+    }
+}
+
+cout<<ans<<endl;
+	return 0;
+}
