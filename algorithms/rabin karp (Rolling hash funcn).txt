@@ -1,0 +1,13 @@
+txt="AABAACA"
+Pat="BAA"
+
+1. calculate hash for pattern , for BAA - 2+1+1=4
+2. calculate hash for 1 st window in text  { text - AAB}
+3. repeat the following : until txt.size() ends
+	a. if Hash (pat) == Hash(taxt_window)
+		then match charters one by one 
+      	b. subtract leftmost (MSB) fro hash (txt_window )
+	c. shift entire hash(txt_window) by 1 unit to left
+	d. Add new character added to the window
+  
+
