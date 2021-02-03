@@ -1,0 +1,47 @@
+void QueueStack :: push(int num)
+{
+      // if first queue is not empty
+    while(!q1.empty())
+    {
+        int k = q1.front();
+        
+        // pop element from first queue
+        q1.pop();
+        
+        // and push it to second queue
+        q2.push(k);
+    }
+    
+    // push num to queue
+    q1.push(num);
+    
+    // if 2nd queue is not empty
+    while(!q2.empty())
+    {
+        // take the front element of second queue
+        int k = q2.front();
+        q2.pop();
+        
+        // and push it to first queue
+        q1.push(k);
+    }
+    
+    
+    
+}
+
+/*The method pop which return the element poped out of the stack*/
+int QueueStack :: pop()
+{   // take front element from the queue
+      if(!q1.empty())
+    {
+        // take front element from the queue
+        int r = q1.front();
+        q1.pop();
+        return r;
+    }
+    
+    return -1;
+
+            
+}

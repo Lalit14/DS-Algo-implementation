@@ -1,0 +1,16 @@
+int maximumSumSubarray(int K, vector<int> &Arr , int N){
+    int osum=0;
+    int sum=0;
+    for(int i=0;i<K;i++){
+        sum+=Arr[i];
+    }
+    osum=sum;
+    for(int i=K,j=0;i<N;i++,j++){
+   sum+=Arr[i]-Arr[j];
+   if(osum<sum){
+       osum=sum;
+   }
+    
+    }
+    return osum;
+    }

@@ -1,0 +1,27 @@
+    int evalRPN(vector<string>& tok) {
+      
+        stack<int>st;
+      for(auto s:tok){
+          cout<<s<<endl;
+          
+        if( s.size()>1 || isdigit(s[0]) ){
+            st.push(stoi(s));
+        }
+            else{
+            auto x=st.top();
+            st.pop();
+            auto y=st.top();
+            st.pop();
+            switch(s[0]){
+                case '+':y+=x; break;
+                case '-':y-=x; break;
+                case '*':y*=x;break;
+                case '/':y/=x;   break; 
+            }
+            st.push(y);
+            
+        }
+           
+      }
+        return st.top();
+        }

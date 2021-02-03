@@ -1,0 +1,21 @@
+
+queue<int> rev(queue<int> q)
+{
+    stack<int>nq;
+    int n=q.size();
+    for(int i=0;i<n;i++){
+        int x=q.front();
+        q.pop();
+    nq.push(x);
+        
+    }
+
+    for(int i=0;i<n;i++)  //pop from stack and push to queue again
+{
+        q.push(nq.top());
+        nq.pop();
+        
+}
+return q;
+    
+}

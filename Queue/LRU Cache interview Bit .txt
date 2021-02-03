@@ -1,0 +1,77 @@
+struct Node{
+    int key;
+    int val;
+    struct Node* next;
+    struct Node* prev;
+    Node(int x, int y): key(x), val(y) , next(NULL), prev(NULL){}
+}typedef Node;
+
+Node* head = NULL;
+Node* tail = NULL;
+unordered_map<int, Node*> mp;
+int cap;
+
+//////////////////////////////
+void add(int key, int val){
+    Node* A = new Node(key, val);
+    A->next = head->next;
+    A->prev = head;
+    head->next = A;
+    A->next->prev = A;
+}
+
+void remove(Node* A){
+    A->prev->next = A->next;
+    A->next->prev = A->prev;
+}
+
+
+//////////////////////////////
+LRUCache::LRUCache(int capacity) {
+    cap = capacity;
+    mp.clear();
+    head = new Node(0, 0);
+    tail = new Node(0, 0);
+    head->next = tail;
+    tail->prev = head;
+}
+
+int LRUCache::get(int key) {
+    if(mp.find(key) != mp.end()){ // exists in the cache
+        Node* node = mp[key];
+        int x = node->val;
+        mp.erase(key); // from the map
+        remove(node); // from the list
+        add(key, x); // add to front
+        mp[key] = head->next; // update in map
+        return x;
+    }
+    else{
+        return -1;
+    }
+}
+
+void LRUCache::set(int key, int value) {
+    if(mp.find(key) != mp.end()){ // exists already
+        Node* node = mp[key];
+        remove(node);
+        mp.erase(key);
+        add(key, value);
+        mp[key] = head->next;
+    }
+    else{
+        if(mp.size() < cap){
+            // Node* node = new Node(value);
+            add(key, value);
+            mp[key] = head->next;
+        }
+        else{
+            // erase LRU item
+            mp.erase(tail->prev->key);
+            remove(tail->prev);
+            add(key, value);
+            mp[key] = head->next;
+        }
+    }
+}
+
