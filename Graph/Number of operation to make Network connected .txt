@@ -1,0 +1,36 @@
+ void DFS(vector<bool>&visited, unordered_map<int,vector<int>>& adj,int curr){
+            visited[curr]=true;
+          for(auto i:adj[curr]){
+            if(visited[i]==false){
+                DFS(visited,adj,i);
+            }        
+          }
+    }
+    
+public:
+    int makeConnected(int n, vector<vector<int>>& connections) {
+     vector<bool>visited(n,false);
+        unordered_map<int,vector<int>>adj;
+        int edge=0;
+        for(int i=0;i<connections.size();i++){
+            adj[connections[i][0]].push_back(connections[i][1]);
+            adj[connections[i][1]].push_back(connections[i][0]);
+        edge++;
+        }
+        int components=0;
+        for(int i=0;i<n;i++){
+            if(visited[i]==false){
+                components++;
+                DFS(visited,adj,i);
+            }
+        }
+        if(edge<n-1){
+            return -1;
+            
+        }
+        int redun=edge-((n-1)-(components-1));
+        
+        if(redun>=components-1) return components-1;
+        
+    return -1;    
+    }

@@ -1,0 +1,22 @@
+int tour(petrolPump p[],int n)
+{
+    
+    for(int i=0;i<n;i++){
+        int leters=0;
+        bool flag=true;
+        int c=0;
+        for(int j=i;c<n;j=(j+1)%n){
+            if(p[j].petrol+leters>=p[j].distance){
+                leters=leters+p[j].petrol-p[j].distance;
+            }
+            else{
+                flag=false;
+                break;
+            }
+            c++;
+        }
+        if(flag) return i;
+    }
+    
+  return -1;
+}

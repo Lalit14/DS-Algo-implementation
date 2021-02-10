@@ -1,0 +1,33 @@
+    int MAX_CHAR=122;
+public:
+    int minValue(string s, int k){
+        int arr[MAX_CHAR]={0};
+       for(int i=0;i<s.length();i++){
+           arr[s[i]-'a']+=1;
+       }
+       priority_queue<int>pq;
+       for(int i=0;i<MAX_CHAR;i++){
+           pq.push(arr[i]);
+       }
+       while(k--){
+           int temp=pq.top();
+    //   cout<<temp<<" ";
+           pq.pop();
+           temp-=1;
+           pq.push(temp);
+     
+       }
+    //   cout<<endl;
+       int sum=0;
+       while(!pq.empty()){
+           int temp=pq.top();
+    //   cout<<temp<<" ";
+           sum+=temp*temp;
+           pq.pop();
+       }
+       
+        
+        // cout<<endl;
+        
+       return sum; 
+    }

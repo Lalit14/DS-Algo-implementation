@@ -1,0 +1,14 @@
+vector<vector<int>>printGraph(int V, vector<int> adj[]){
+	    vector<vector<int>>vec;
+	   for(int i=0;i<V;i++){
+	   vector<int >temp; 
+	   temp.push_back(i);
+	       for(auto x: adj[i] ){
+	   temp.push_back(x);
+	       }
+	       vec.push_back(temp);
+	   }
+	    
+	    return vec;
+	    
+	}

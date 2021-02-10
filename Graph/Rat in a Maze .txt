@@ -1,0 +1,47 @@
+int visited[MAX][MAX];
+ vector<string>vec;
+//  bool visited<bool>
+void  func1(int i,int j,int m[MAX][MAX],int n,string str){
+    if(i==n-1 && j==n-1) {
+        vec.push_back(str);
+        // str.pop_back();
+        return ;
+        // str="";
+ 
+    }
+   else if(i>=n || j>=n  || j<0 || i<0 || m[i][j]==0 ||visited[i][j] == 1) return ;
+   else{
+       visited[i][j]=1;
+    if(m[i+1][j]==1 && i<n){
+    func1(i+1,j,m,n,str+'D');}
+    if(m[i][j-1]==1 && j>0){
+    func1(i,j-1,m,n,str+'L');}
+    if(j<n && m[i][j+1]==1){
+    func1(i,j+1,m,n,str+'R');}
+    if(m[i-1][j]==1 && i>0){
+    func1(i-1,j,m,n,str+'U');
+        
+    }
+    visited[i][j]=0;
+    
+}
+  if(!str.empty()){
+      str.pop_back();
+      return ;
+  }  
+}
+
+
+vector<string> findPath(int m[MAX][MAX], int n) {
+ 
+  int i=0;
+  int j=0;
+  string str="";
+  vec.clear();
+   memset(visited, 0, sizeof visited);
+  func1(i,j,m,n,str);
+if(vec.size()==0) vec.push_back("-1");
+
+    
+return vec;    
+}

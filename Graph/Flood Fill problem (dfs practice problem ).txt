@@ -1,0 +1,26 @@
+class Solution {
+    void func1(int sr,int sc,vector<vector<int>>& image,int newColor,int source){
+   
+    if(sr<0 || sc<0 || sr>=image.size() || sc>=image[0].size()) return ;    
+    else if(image[sr][sc]!=source)  return ;
+        
+     image[sr][sc]=newColor;
+        
+    func1(sr+1,sc,image,newColor,source);
+    func1(sr,sc+1,image,newColor,source);
+    func1(sr-1,sc,image,newColor,source);
+    func1(sr,sc-1,image,newColor,source);
+        
+    }
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        if(newColor==image[sr][sc]) return image;
+        // vector<vector<int>>vec;
+        int n=image.size();
+        int m=image[0].size();
+        int source=image[sr][sc];
+   
+        func1(sr,sc,image,newColor,source);
+        return image;
+    }
+};

@@ -1,0 +1,39 @@
+*** two unique rest twice  ***
+    vector<int> singleNumber(vector<int> nums) 
+    {
+        int n=nums.size();
+    //   int x,y;
+       vector<int>vec;
+       
+       int k=0;
+       for(int val:nums){
+           k=k^val;
+           cout<<k<<endl;
+       }			sum=6	
+     			Now we will take 2’s Complement of sum i.e (-sum) = “010”. 
+			Now bitwise And the 2’s of sum with the sum i.e “110” & “010” gives the answer “010” (Aim for 					bitwise & is that we want to get a number that contains only the rightmost set bit of the sum). 
+       int rsbm= k & -k;
+       
+       cout<<endl;
+       int x=0;
+       int y=0;
+       
+       for(int val:nums){
+           if((rsbm &val)==0){
+               y=y^val;
+           }
+           else{
+               x=x^val;
+           }
+       }
+    
+       if(x>y){
+           vec.push_back(y);
+           vec.push_back(x);
+       }
+       else{
+           vec.push_back(x);
+           vec.push_back(y);
+       }
+       return vec;
+    }
