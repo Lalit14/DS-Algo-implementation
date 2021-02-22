@@ -1,0 +1,28 @@
+unordered_map<string,int>dp;
+int  wordBreak_helper(string a, vector<string> &b){
+    int k=a.size();
+    if(k==0) return 1;
+    if(dp[a]!=0) return dp[a];
+for(int i=1;i<k+1;i++){
+    int f=0;
+    string left=a.substr(0,i);
+  for(int j=0;j<b.size();j++){
+      if(left.compare(b[j])==0){
+          f=1;
+          break;
+      }
+      
+  }
+ 
+    if(f==1 && wordBreak_helper(a.substr(i,k-i),b)==1) return dp[a]=1;   
+}
+return dp[a]=-1;
+}
+int wordBreak(string A, vector<string> &B) {
+
+if(A.size()==0) return 1;
+
+ int val=wordBreak_helper(A,B);
+return val==1;
+    
+}

@@ -1,0 +1,84 @@
+ static bool isvalid(int grid[N][N],int ni,int nj,int val){
+        for(int i=0;i<9;i++){
+            if (grid[ni][i]==val) return false;
+        }
+        for(int j=0;j<9;j++){
+            if(grid[j][nj]==val) return false;
+            
+        }
+        int x=(ni/3)*3;
+        int y=(nj/3)*3;
+        
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                if(grid[i+x][j+y]==val) return false;
+            }
+        }
+        
+        
+        
+        return true;
+    }
+
+
+********************************************************************
+  bool SolveSudoku(int grid[N][N])  
+    {  int i, j;
+
+    for(i = 0; i < N; i++)
+    {
+        bool flag = false;
+        for(j = 0; j < N; j++)
+        {
+            if(grid[i][j] == 0)
+            {
+                flag = true;
+                break;
+            }
+        }
+        if(flag == true)
+        {
+            break;
+        }
+    }
+    
+    if(i == N && j == N)
+    {
+        return true;
+    }
+    
+    
+    for(int n = 1; n <= N; n++)
+    {
+        
+        if(isvalid(grid, i, j, n) == true)
+        {
+            grid[i][j] = n;
+            // SolveSudoku(grid);
+            if(SolveSudoku(grid) == true)
+            {
+                return true;
+            }
+            
+            grid[i][j] = 0;
+        }
+    }
+    
+  
+  return false;
+  
+    }
+    
+    void printGrid (int grid[N][N]) 
+    {
+        if(SolveSudoku(grid)==true){
+            for(int i=0;i<9;i++){
+                for(int j=0;j<9;j++){
+                    cout<<grid[i][j]<<" ";
+                }
+                // cout<<endl;
+            }
+            
+        }
+         
+    }    

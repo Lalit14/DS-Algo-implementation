@@ -1,0 +1,23 @@
+ bool func1(vector<int>& nums, int sum, int index){
+          if(index>=nums.size()) return false;
+          if(sum == nums[index]) return true;
+        if(sum < nums[index]) return false;
+        
+        return func1(nums,sum-nums[index],index+1) || func1(nums,sum,index+1);
+    }
+public:
+    bool canPartition(vector<int>& arr) {
+      int target = 0;
+        for(int i =0;i<arr.size();i++){
+            target+= arr[i];
+        }
+        if(target%2) return false;
+        target /= 2;
+        sort(arr.rbegin(),arr.rend());
+   
+    return    func1(arr,target,0);
+       
+        
+        
+        
+    }

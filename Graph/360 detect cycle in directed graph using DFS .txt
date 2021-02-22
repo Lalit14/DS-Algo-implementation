@@ -1,0 +1,32 @@
+   // Code here
+bool iscyclic(int v,int parent, vector<bool> &visited, vector<int> adj[])
+    {
+        visited[v]=true;
+    for(auto x:adj[v]){
+        if(visited[x]==false){
+            if(iscyclic(x,v,visited,adj)) return true;
+        }        
+        else if(parent!=x) return true;
+             
+            }
+        return false;
+    }
+public:
+bool isCycle(int V, vector<int>adj[]){
+	 vector<bool> visited(V, false); 
+// 		vector<bool> recStack(V, ); 
+
+		for(int i = 0; i < V; i++){ 
+		if(visited[i]==false){
+		bool x=iscyclic(i,-1,visited,adj);
+		if(x) return true;
+		}
+		}
+	   
+	   
+return false;	   
+	}
+
+
+	
+};

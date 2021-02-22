@@ -1,0 +1,49 @@
+class Solution {
+private:
+    unordered_set<string> words;
+
+public:
+    vector<string> wordBreak(string s, vector<string>& wordDict) {
+        words.clear();
+        copy(wordDict.begin(), wordDict.end(), inserter(words, words.end()));
+
+        int n = s.size();
+        vector<int> dp(n + 1, 0);
+        dp[0] = 1;
+        for (int i = 1; i <= n; ++i) {
+            for (int j = i - 1; j >= 0; --j) {
+                if (dp[j]) {
+                    if (words.count(s.substr(j, i - j))) {
+                        dp[i] = 1;
+                        break;
+                    }
+                }
+            }
+        }
+
+        vector<string> res;
+        if (dp[n]) {
+            constructSentence(s, dp, 0, res, "");
+        }
+        return res;
+    }
+
+    void constructSentence(const string& s,
+                           const vector<int>& dp,
+                           int pos,
+                           vector<string>& res,
+                           string temp) {
+        for (int i = pos + 1; i < dp.size(); ++i) {
+            if (dp[i]) {
+                string new_word = s.substr(pos, i - pos);
+                if (words.count(new_word)) {
+                    if (i + 1 == dp.size()) {
+                        res.push_back(temp + new_word);
+                        return;
+                    }
+                    constructSentence(s, dp, i, res, temp + new_word + " ");
+                }
+            }
+        }
+    }
+};

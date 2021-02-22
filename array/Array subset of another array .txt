@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+#include <unordered_map>
+bool func1(int arr[],int brr[],int k,int l){
+    int i=0;
+    int j=0;
+    for(i=0;i<l;i++){
+        for( j=0;j<k;j++){
+            if(arr[j]==brr[i]) break;
+        }
+        if(j==k) return false;
+    }
+    return true;
+}
+int main() {
+	int t;
+	cin>>t;
+	while(t--){
+	   
+	    int k;
+	    int l;
+	    cin>>k>>l;
+	     int arr[k];
+	    int brr[l];
+	    for(int i=0;i<k;i++){
+	        cin>>arr[i];
+            
+	    }
+	     for(int i=0;i<l;i++){
+	        cin>>brr[i];
+	     }
+
+
+if(func1(arr,brr,k,l)==true) cout<<"Yes"<<endl;
+else cout<<"No"<<endl;
+
+	}
+	return 0;
+}
