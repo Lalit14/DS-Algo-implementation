@@ -1,0 +1,25 @@
+void main(){
+int src=0;
+int k=62;
+vector<bool>path(V,false);
+path[src]=true;
+
+if(pathpossible(src,k,path)) cout<<"yes";
+else cout<<"no";
+}
+
+bool pathpossible(int src,int k,vector<bool>&path){
+	if(k<=0) return true;
+for(int i=adj[src];i!=adj[src].end(); i++){
+	int vertex=i.first;
+	int weight=i.second;
+	if(path[v]==true) continue;
+
+	if(k=<w) return true;
+	path[v] =true;
+ 	if(pathpossible(v,k-w,path)) return true;
+	path[v]=false;   //backtrack
+
+	}
+return false;
+}

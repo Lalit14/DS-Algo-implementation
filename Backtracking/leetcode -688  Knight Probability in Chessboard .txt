@@ -1,0 +1,46 @@
+
+**************TLE*************
+
+    double knightProbability(int N, int K, int r, int c) {
+             vector<vector<int>>vec = {{1, 2}, {2, 1}, {1, -2}, {-2, 1}, {-1, 2}, {2, -1}, {-1, -2}, {-2, -1}};
+        if (r >= N || r < 0 || c >= N || c < 0) {
+            return 0.0;
+        } else if (K == 0) {
+            return 1.0;
+        } 
+        double result = 0.0;
+        for (vector<int> next : vec) {
+            result += 0.125 * knightProbability(N, K - 1, r + next[0], c + next[1]);}
+        return result;
+    }
+*****************************
+**************************optimization ***************
+   double dp[25][25][100];
+            vector<pair<int,int>>vec={ {-2,1}, {-2,-1}, {-1,2}, {-1,-2}, {1,2}, {1,-2},
+                              {2,1}, {2,-1} };
+    double dfs(int N, int K, int i, int j) {
+    
+        if(i<0 or j<0 or i>=N or j>=N)
+        return 0.0;
+    else if(K==0)
+        return 1.0;
+    else if(dp[i][j][K]>=0)
+        return dp[i][j][K];
+        
+       double ans=0.0;
+    for(int k=0;k<8;k++)
+    {
+        int r= i + vec[k].first;
+        int c= j + vec[k].second;
+        ans+=dfs(N,K-1,r,c);
+    }
+    
+    return dp[i][j][K]=(double)(ans*0.125);
+    
+    }
+
+    public :
+    double knightProbability(int N, int K, int r, int c) {
+   memset(dp,-1.0,sizeof(dp));
+        return dfs(N,K,r,c);
+    }

@@ -1,0 +1,29 @@
+void  helper(string str,int k,string& maxx ){
+     
+if(k==0) return ;
+for(int i=0;i<str.length()-1;i++){
+    for(int j=i+1;j<str.length();j++){
+        if(str[i]<str[j]){
+            swap(str[i],str[j]);
+            if( str.compare(maxx)>0){
+       maxx=str;
+   
+}
+            helper(str,k-1,maxx);
+            swap(str[i],str[j]);
+            
+        }
+    }
+}
+    }
+    public:
+    string findMaximumNum(string str, int k)
+    {
+           string maxx;
+       maxx=str; 
+       helper(str,k,maxx);
+      
+       return maxx;
+       
+       
+    }

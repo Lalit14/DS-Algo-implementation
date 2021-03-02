@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+#include <bits/stdc++.h>
+map<string,int>umap;
+
+void helper(string s ,int l,int r){
+if(l==r){
+    // cout<<s<<" ";
+    umap[s]=1;
+    return ;
+}
+else{
+    for(int i=l;i<=r;i++){
+        swap(s[l],s[i]);
+        helper(s,l+1,r);
+        swap(s[l],s[i]);
+        }
+}
+}
+int main() {
+	int t;
+	cin>>t;
+	while(t--){
+	    string s;
+	    cin>>s;
+	    int n=s.length();
+        helper( s.c_str(),0,n-1);
+	    map<string,int>::iterator it;
+	    for(it = umap.begin();it!=umap.end();it++)
+	        cout << it->first << " ";
+	    umap.clear();
+	    
+	  cout<<endl;  
+	    
+	}
+	return 0;
+}
