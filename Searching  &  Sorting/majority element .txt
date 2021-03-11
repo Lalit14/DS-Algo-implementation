@@ -1,0 +1,30 @@
+  int func1(int a[],int size){
+        int majindex=0;
+        int count=1;
+        for(int i=0;i<size;i++){
+        if(a[majindex]==a[i])
+        {count++;
+            
+        }else{
+            count--;
+        }
+        if(count==0){
+            majindex=i;
+        count=1;
+            
+        }
+        }
+         return a[majindex];
+    }
+    int majorityElement(int a[], int size)
+    {if(size==0) return -1;
+        if(size==2) return -1;
+        if(size==1) return a[0];
+        int k=func1(a,size);
+        int f=0;
+        for(int i=0;i<size;i++){
+            if(k==a[i]) f++;
+        }
+        if(f>size/2) return k;
+        return -1;;
+    }

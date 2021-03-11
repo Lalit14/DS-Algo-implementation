@@ -1,0 +1,43 @@
+
+#include <iostream>
+using namespace std;
+#include<vector>
+void func(vector<vector<string> > &input,int startfromhere,vector<string> &temp,vector<vector<string> >&ans)
+{
+	if(startfromhere==input.size())
+	{
+		//we have reached end
+		ans.push_back(temp);
+	}
+	else
+	{
+		vector<string> current=input[startfromhere];
+		for(int i=0;i<current.size();i++)
+		{
+			temp.push_back(current[i]);
+			func(input,startfromhere+1,temp,ans);
+			temp.pop_back();
+		}
+	}
+}
+int main() 
+{
+ 
+ 
+ 
+	vector<vector<string> >input {{"you", "we"},
+                                  {"have", "are"},
+                                  {"sleep", "eat", "drink"}
+                                  };
+	vector<vector<string> >ans;
+	vector<string> temp;
+	func(input,0,temp,ans);
+	for(int i=0;i<ans.size();i++)
+	{
+		for(int j=0;j<ans[i].size();j++)
+		cout<<ans[i][j]<<" ";
+		cout<<endl;
+	}
+	// your code goes here
+	return 0;
+}

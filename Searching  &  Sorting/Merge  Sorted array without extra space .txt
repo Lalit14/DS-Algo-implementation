@@ -1,0 +1,16 @@
+void merge(int arr1[], int arr2[], int n, int m) {
+	   
+	    int right=0;
+	    int left=n-1;
+	   while(left>=0 && right<m){
+	       if(arr1[left]>arr2[right]){
+	           swap(arr1[left],arr2[right]);
+	        
+	       }
+	           left--;
+	           right++;
+	}
+	
+	sort(arr1,arr1+n);
+	sort(arr2,arr2+m);
+	}

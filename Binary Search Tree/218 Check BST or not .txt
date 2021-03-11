@@ -1,0 +1,52 @@
+************************below will give wrong answer******* 
+ bool func1(Node* curr){
+        if(curr==NULL) return true;
+        if(curr->left!=NULL && curr->data<curr->left->data){
+            return false;
+        }else if(curr->right!=NULL && curr->data>=curr->right->data){
+            return false;
+        }
+        
+        else if(!func1(curr->left) || !func1(curr->right)) {
+           return false;
+        }
+        return true;
+    }
+    public:
+    bool isBST(Node* root) 
+    {
+        Node* curr=root;
+        if(!curr) return true;
+        
+        return func1(curr);
+}
+************************************        
+Input:
+3 2 5 1 4
+
+Its Correct output is:
+0
+
+And Your Code's output is:
+1
+
+************************************************************************   
+  			*****************************************correct apparoach***********************************      
+   
+
+    bool func1(Node* curr,int minv,int maxv){
+       if(curr==NULL) return true;
+       if(curr->data<minv || curr->data>maxv){
+           return false;
+       }
+       return (func1(curr->left,minv,curr->data-1) && func1(curr->right,curr->data+1,maxv));
+    }
+    public:
+    bool isBST(Node* root) 
+    {
+        Node* curr=root;
+        if(!curr) return true;
+        int minv=INT_MIN;
+        int maxv=INT_MAX;
+        return func1(curr,minv,maxv);
+    }

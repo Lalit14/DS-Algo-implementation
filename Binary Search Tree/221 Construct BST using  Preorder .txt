@@ -1,0 +1,19 @@
+TreeNode* helper(vector<int>&preorder,int &i,int min,int max){
+        if(i==preorder.size()){
+            return NULL;
+        }
+        if(preorder[i]<min || preorder[i]>max) return NULL;
+        
+        TreeNode* root=new TreeNode(preorder[i]);
+        i++;
+        root->left=helper(preorder,i,min,root->val-1);
+        root->right=helper(preorder,i,root->val+1,max);
+        return root;
+    }
+public:
+    int i=0;
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+       int i=0;
+        return helper(preorder,i,INT_MIN,INT_MAX);
+        
+    }

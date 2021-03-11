@@ -1,0 +1,41 @@
+  int arr[1001];
+    void inorder(Node* root,int &i){
+        if(root==NULL ) return ;
+     inorder(root->right,i);
+        arr[i++]=root->data;
+        inorder(root->left,i);
+    }
+    public:
+    int kthLargest(Node *root, int K)
+    {int i=0;
+        inorder(root,i);
+        // int n=arr.size();
+        // sort(vec.begin(),vec.end());
+        return arr[K-1];
+        
+        
+    }
+T- O(N)
+S- O(N)
+************************************
+optimal solution ---
+   void inorder(Node* root,int &k,int &val){
+        if(root==NULL ) return ;
+        if(k<=0) return ;
+     inorder(root->right,k,val);
+       k--;
+        if(k==0){
+            val=root->data;
+            return ;
+        }
+        inorder(root->left,k,val);
+    }
+    public:
+    int kthLargest(Node *root, int K)
+    {
+    int val;
+        inorder(root,K,val);
+        return val;
+    }
+T- O(K)
+S- O(1)

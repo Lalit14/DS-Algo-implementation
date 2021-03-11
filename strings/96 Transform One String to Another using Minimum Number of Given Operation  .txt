@@ -1,0 +1,52 @@
+int minOps(string s1,string s2){
+    int n=s1.length();
+    int m=s2.length();
+    if(n!=m) return -1;
+    
+    int map1[256]={0};
+
+    for(int i=0;i<n;i++){
+        map1[s1[i]]++;
+    }
+    for(int i=0;i<n;i++){
+        map1[s2[i]]--;
+    }
+    for(int i=0;i<n;i++){
+        if(map1[i]) return -1;
+    }
+    int i=n-1;
+    int j=n-1;
+    int ans=0;
+    while(i>=0){
+        
+        while(i>=0 && s1[i]!=s2[j] )
+        {
+            
+            ans++;
+            i--;
+            
+        }
+        if(s1[i]==s2[j]){
+            i--;
+            j--;
+            
+        }
+        
+    }
+
+  return ans;  
+}
+
+*************************************/********************
+Input:  A = "ABD", B = "BAD"
+Output: 1
+Explanation: Pick B and insert it at front.
+
+Input:  A = "EACBD", B = "EABCD"
+Output: 3
+Explanation: Pick B and insert at front, EACBD => BEACD
+             Pick A and insert at front, BEACD => ABECD
+             Pick E and insert at front, ABECD => EABCD
+
+
+

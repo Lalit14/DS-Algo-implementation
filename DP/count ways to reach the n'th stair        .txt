@@ -1,0 +1,45 @@
+int dp[100001];
+long long int M=1000000007;
+int func1(int n){
+    
+    if(n==0) return 1;
+    if(n==1) return 1;
+    if(n==2) return 2;
+    if(dp[n]!=-1) return dp[n];
+    
+    return dp[n]=(func1(n-1)+func1(n-2))%M;
+}
+
+int countWays(int m){
+   memset(dp,-1,sizeof(dp));
+  if(m==0) return 0;
+  if(m==1) return 1;
+  if(m==2) return 2;
+  return func1(m);
+
+    
+}
+
+******************************  (amazon interview)*****************
+Time limit exceeded :
+
+int  m=1000000007;
+int func1(int n){
+    if(n==0) return 1;
+    if(n==1) return 1;
+    if(n==2) return 2;
+    
+    
+    return (func1(n-1)+func1(n-2))%M;
+}
+
+int countWays(int m){
+   
+  if(m==0) return 0;
+  if(m==1) return 1;
+  if(m==2) return 2;
+  return func1(m);
+
+    
+}
+T.C. =2^N

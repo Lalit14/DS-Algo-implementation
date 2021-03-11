@@ -1,0 +1,36 @@
+   vector<int>vec;
+    void helper(TreeNode* root){
+        if(!root) return ;
+        helper(root->left);
+        vec.push_back(root->val);
+        helper(root->right);
+    }
+    int kthSmallest(TreeNode* root, int k) {
+        helper(root);
+    return vec[k-1];
+    }
+
+T.C. - O(N)
+S.C -O(N)
+********************************************
+
+    void helper(TreeNode* root,int &k,int &val){
+        if(!root) return ;
+        if(k<=0) return ;
+        helper(root->left,k,val);
+           k--;
+        if(k==0) {
+               val=root->val;
+            return ;
+           }
+        helper(root->right,k,val);
+    }
+    int kthSmallest(TreeNode* root, int k) {
+        int val;
+    
+        helper(root,k,val);
+    return val;
+    }
+
+T.C. = O(K)
+S.C. = O(1)

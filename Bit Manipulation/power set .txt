@@ -1,0 +1,24 @@
+vector<string>ans;
+        void solve(string s,string in,string op){
+            if(in.length()==0) {
+                ans.push_back(op);
+                return ;
+            }
+            string op1=op;
+            string op2=op;
+            op1.push_back(in[0]);
+            
+            in.erase(in.begin()+0);
+        solve(s,in,op1);
+        solve(s,in,op2);
+        return ;
+        }
+    
+	public:
+		vector<string> AllPossibleStrings(string s){
+		   string op="";
+		    solve(s,s,op);
+		    sort(ans.begin(),ans.end());
+		 return ans;   
+		    
+		}

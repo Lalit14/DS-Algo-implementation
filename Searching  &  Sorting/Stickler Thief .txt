@@ -1,0 +1,18 @@
+ll dp[10001];
+ll helper(ll arr[],ll n){
+    if(n<=-1) return 0;
+    
+    if(dp[n]!=-1) return dp[n];
+  ll x1=(arr[n]+helper(arr,n-2));
+  ll x2=helper(arr,n-1);
+ return  dp[n]= max(x1,x2);
+}
+
+ll FindMaxSum(ll arr[], ll n)
+{
+    memset(dp,-1,sizeof(dp));
+   ll x=helper(arr,n-1);
+   return x;
+   
+   
+}

@@ -1,0 +1,14 @@
+  if(!head1) return NULL;
+if(!head2) return NULL;
+ListNode *curr1=head1;
+ListNode *curr2=head2;
+while(curr1 || curr2){
+    if(curr1==curr2) return curr1;
+    
+    curr1= curr1==NULL ? head2 : curr1->next;
+    curr2= curr2==NULL ? head1 : curr2->next;
+    
+}
+    return NULL;
+        
+    }

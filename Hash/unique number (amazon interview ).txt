@@ -1,0 +1,33 @@
+***********brute force*********************
+vector<int> uniqueNumbers(int L,int R)
+    {
+       vector<int>vec;
+       for(int i=L;i<R+1;i++){
+           unordered_map<int,int>umap;
+          int k=i;
+          bool flag=true;
+           while(k){
+               
+               int last=k%10;
+               k=k/10;
+               umap[last]++;
+           if(umap[last]>1) flag=false;
+           }
+           if(flag==true) vec.push_back(i);
+       }
+       return vec;
+    }
+*****************************
+L = 10
+R = 20
+
+Output:
+10 12 13 14 15 16 17 18 19 20
+
+Input:
+L = 1
+R = 9
+
+Output:
+1 2 3 4 5 6 7 8 9
+******************************
